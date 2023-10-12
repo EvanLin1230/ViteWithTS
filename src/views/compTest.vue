@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <div class="form-control">
-            <btnNumeric :value="btnNumeric1"></btnNumeric>
+            <btnNumeric v-model:value="btnNumeric1"></btnNumeric>
             <label>目前數字（當前頁面）: {{ btnNumeric1 }}</label>
         </div>
         <div class="form-control">
             測試組件方式一（1.使用插槽將組件丟進去 2.將顯示的label自定義的丟進去）:
             <compTestContainer :labelValue="`btnNumeric`.toString()">
-                <btnNumeric :value="btnNumeric2"></btnNumeric>
+                <btnNumeric v-model:value="btnNumeric2"></btnNumeric>
             </compTestContainer>
             <label>目前數字（當前頁面）: {{ btnNumeric2 }}</label>
         </div>
@@ -18,7 +18,7 @@
                     <label>btnNumeric</label>
                 </template>
                 <template v-slot:Component>
-                    <btnNumeric :value="btnNumeric3"></btnNumeric>
+                    <btnNumeric v-model:value="btnNumeric3"></btnNumeric>
                 </template>
             </compTestContainer2>
             <label>目前數字（當前頁面）: {{ btnNumeric3 }}</label>

@@ -1,13 +1,13 @@
 <template>
     <div class="d-flex">
         <button class="btn border bi bi-dash" @click="Plus(-1)"></button>
-        <input class="form-control" type="text" :value="value">
+        <input class="form-control" type="text" :value="value" @input="emit('update:value', $event.target.value)">
         <button class="btn border bi bi-plus" @click="Plus(1)"></button>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 // 函式區
 /** 
@@ -38,12 +38,21 @@ const prop = defineProps({
     }
 });
 
+// 
+const emit = defineEmits(['update:value'])
+
 // 流程開始
 propsCheck();
 
 // 確認資料都沒問題後，就可以初始化組件資料
-const value = ref(Number.parseInt(prop['value']!.toString()));
-
+const value = computed({
+    get() {
+        return Number.parseInt(prop['value']!.toString());
+    },
+    set(newValue) {
+        emit('update:value', newValue);
+    }
+})
 </script>
 
 <style scoped>
